@@ -1,0 +1,1 @@
+export const BASEMENT_REPOSITORY = Symbol("IBasementRepository");

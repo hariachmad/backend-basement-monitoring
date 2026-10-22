@@ -1,0 +1,1 @@
+export type LineState = "IN" | "OUT"

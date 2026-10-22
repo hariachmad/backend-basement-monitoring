@@ -1,0 +1,1 @@
+export type Direction = 'in' | 'out' | 'both';
