@@ -21,3 +21,12 @@ model Basement {
 
   @@map("basements")
 }
+
+model Line {
+  id        String  @id
+  name      String  @unique
+  direction String
+  isActive  Boolean @default(true) @map("is_active")
+
+  @@map("lines")
+}
