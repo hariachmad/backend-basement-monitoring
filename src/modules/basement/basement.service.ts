@@ -7,6 +7,8 @@ import { FindBasement } from './application/usecases/FindBasement.js';
 import { FindAllBasements } from './application/usecases/FindAllBasements.js';
 import { DeleteBasement } from './application/usecases/DeleteBasement.js';
 import { BASEMENT_REPOSITORY } from './basement.tokens.js';
+import { EnterBasement } from './application/usecases/EnterBasement.js';
+import { LeaveBasement } from './application/usecases/LeaveBasement.js';
 
 @Injectable()
 export class BasementService {
@@ -15,6 +17,8 @@ export class BasementService {
     private readonly findBasement: FindBasement;
     private readonly findAllBasements: FindAllBasements;
     private readonly deleteBasement: DeleteBasement;
+    private readonly enterBasement: EnterBasement;
+    private readonly leaveBasement: LeaveBasement;
 
     constructor(
         @Inject(BASEMENT_REPOSITORY) repository: IBasementRepository,
@@ -24,6 +28,8 @@ export class BasementService {
         this.findBasement = new FindBasement(repository);
         this.findAllBasements = new FindAllBasements(repository);
         this.deleteBasement = new DeleteBasement(repository);
+        this.enterBasement = new EnterBasement(repository);
+        this.leaveBasement = new LeaveBasement(repository);
     }
 
     register(input: Parameters<RegisterBasement['execute']>[0]) {
@@ -44,5 +50,13 @@ export class BasementService {
 
     delete(input: Parameters<DeleteBasement['execute']>[0]) {
         return this.deleteBasement.execute(input);
+    }
+
+    enter(input: Parameters<EnterBasement['execute']>[0]) {
+        return this.enterBasement.execute(input);
+    }
+
+    leave(input: Parameters<LeaveBasement['execute']>[0]) {
+        return this.leaveBasement.execute(input);
     }
 }

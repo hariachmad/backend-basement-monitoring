@@ -1,0 +1,1 @@
+export type BasementCountChangedreason = "IN" | "OUT" | "INITIAL";

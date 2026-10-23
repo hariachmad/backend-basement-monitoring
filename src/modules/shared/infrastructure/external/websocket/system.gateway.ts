@@ -12,7 +12,7 @@ import { Server, Socket } from "socket.io";
 import type { MessageBody as SocketMessageBody }  from "./dto/message-body.dto.js";
 
 @WebSocketGateway({
-  namespace: "basements",
+  namespace: "dashboard",
   cors: { origin: "*" }, 
 })
 export class SystemGateway implements OnGatewayConnection, OnGatewayDisconnect {

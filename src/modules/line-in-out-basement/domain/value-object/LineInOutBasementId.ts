@@ -1,20 +1,25 @@
+import { randomUUID } from "crypto";
+import { validate as isUUID } from 'uuid';
 
-import { randomUUID, UUID } from "crypto";
 export class LineInOutBasementId {
-    private value: UUID
+    private value: string
 
-    constructor(value: UUID) {
+    constructor(value: string) {
         this.value = value;
     }
 
-    static of(value: UUID): LineInOutBasementId {
-        return new LineInOutBasementId(value);
+    static of(value: string): LineInOutBasementId {
+        if (!isUUID(value)) {
+            throw new Error(`Invalid UUID: ${value}`);
+        }
+        return new LineInOutBasementId(value.toLowerCase());
     }
 
     static generate(): LineInOutBasementId {
         return new LineInOutBasementId(randomUUID());
     }
-    getValue(): UUID {
+
+    getValue(): string {
         return this.value;
     }
 }
