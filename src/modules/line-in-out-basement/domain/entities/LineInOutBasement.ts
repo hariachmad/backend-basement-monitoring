@@ -5,10 +5,10 @@ import { LineInOutBasementId } from "../value-object/LineInOutBasementId.js";
 export class LineInOutBasement {
     id: LineInOutBasementId;
     lineId: LineId;
-    inToBasement: BasementId | undefined;
-    outToBasement: BasementId | undefined;
+    inToBasement: BasementId | null;
+    outToBasement: BasementId | null;
 
-    constructor(id: LineInOutBasementId, lineId: LineId, inToBasement?: BasementId, outToBasement?: BasementId) {
+    constructor(id: LineInOutBasementId, lineId: LineId, inToBasement: BasementId | null, outToBasement: BasementId | null) {
         this.id = id;
         this.lineId = lineId;
         this.inToBasement = inToBasement;
@@ -23,11 +23,11 @@ export class LineInOutBasement {
         return this.lineId;
     }
 
-    public getInToBasement(): BasementId | undefined {
+    public getInToBasement(): BasementId | null {
         return this.inToBasement;
     }
 
-    public getOutToBasement(): BasementId | undefined {
+    public getOutToBasement(): BasementId | null {
         return this.outToBasement;
     }
 

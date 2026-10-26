@@ -17,7 +17,7 @@ export class RegisterLine {
             LineId.generate(),
             input.name,
             input.direction,
-            input.isActive ?? true,
+            true,
         );
 
         await this.lineRepository.save(line);

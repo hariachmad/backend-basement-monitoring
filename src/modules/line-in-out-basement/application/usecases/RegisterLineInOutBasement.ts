@@ -17,16 +17,16 @@ export class RegisterLineInOutBasement {
 
     async execute(input: IRegisterLineInOutBasementRequest): Promise<IRegisterLineInOutBasementResponse> {
         const lineId = LineId.of(input.lineId);
-        const inToBasement = BasementId.of(input.inToBasementId);
-        const outToBasement = BasementId.of(input.outToBasementId);
+        const inToBasement = input.inToBasementId != "" ? BasementId.of(input.inToBasementId) : null;
+        const outToBasement = input.outToBasementId != "" ? BasementId.of(input.outToBasementId) :  null;
 
         if (!(await this.lineRepository.findById(lineId))) {
             throw new Error("Line not found");
         }
-        if (!(await this.basementRepository.findById(inToBasement))) {
+        if (inToBasement && !(await this.basementRepository.findById(inToBasement))) {
             throw new Error("inToBasement not found");
         }
-        if (!(await this.basementRepository.findById(outToBasement))) {
+        if (outToBasement && !(await this.basementRepository.findById(outToBasement))) {
             throw new Error("outToBasement not found");
         }
 

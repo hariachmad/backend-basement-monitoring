@@ -27,7 +27,7 @@ export class BasementController {
         if (id) {
             return this.basementService.find({ id: BasementId.of(id), name });
         }
-        return this.basementService.find({ id: undefined, name });
+        return this.basementService.find({ id: null, name });
     }
 
     @Get(":id")

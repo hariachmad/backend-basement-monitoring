@@ -10,8 +10,4 @@ export class RegisterLineRequestDto implements IRegisterLineRequest {
 
     @IsIn(['in', 'out', 'both'])
     direction: Direction;
-
-    @IsOptional()
-    @IsBoolean()
-    isActive?: boolean;
 }

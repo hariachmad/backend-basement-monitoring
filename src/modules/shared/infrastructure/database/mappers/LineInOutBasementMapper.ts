@@ -6,13 +6,11 @@ import { LineInOutBasementId } from "../../../../line-in-out-basement/domain/val
 
 export class LineInOutBasementMapper {
     static toDomain(row: LineInOutBasementRow): LineInOutBasement {
-        if (row.inToBasementId == null) throw new Error("row inToBasementId is null");
-        if (row.outToBasementId == null) throw new Error("row outToBasementId is null");
         return new LineInOutBasement(
             new LineInOutBasementId(row.id),
             new LineId(row.lineId),
-            new BasementId(row.inToBasementId),
-            new BasementId(row.outToBasementId),
+            row.inToBasementId ? new BasementId(row.inToBasementId) : null,
+            row.outToBasementId ? new BasementId(row.outToBasementId) : null,
         );
     }
 

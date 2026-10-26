@@ -4,7 +4,7 @@ import { BasementId } from "../../domain/value-object/BasementId.js";
 
 export class FindBasementRequestDto implements IFindBasementRequest{
     @IsOptional()
-    id: BasementId | undefined;
+    id: BasementId | null;
 
     @IsOptional()
     @IsString()
