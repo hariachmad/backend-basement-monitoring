@@ -26,5 +26,6 @@ import { prisma } from '../shared/infrastructure/database/prisma.js';
     },
     LineInOutBasementService,
   ],
+   exports: [LineInOutBasementService],
 })
 export class LineInOutBasementModule {}

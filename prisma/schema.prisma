@@ -39,12 +39,12 @@ model Line {
 model LineInOutBasement {
   id              String @id
   lineId          String @unique @map("line_id")
-  inToBasementId  String @map("in_to_basement_id")
-  outToBasementId String @map("out_to_basement_id")
+  inToBasementId  String? @map("in_to_basement_id")
+  outToBasementId String? @map("out_to_basement_id")
 
   line          Line     @relation(fields: [lineId], references: [id], onDelete: Cascade)
-  inToBasement  Basement @relation("InToBasement", fields: [inToBasementId], references: [id], onDelete: Cascade)
-  outToBasement Basement @relation("OutToBasement", fields: [outToBasementId], references: [id], onDelete: Cascade)
+  inToBasement  Basement? @relation("InToBasement", fields: [inToBasementId], references: [id], onDelete: Cascade)
+  outToBasement Basement? @relation("OutToBasement", fields: [outToBasementId], references: [id], onDelete: Cascade)
 
   @@index([inToBasementId])
   @@index([outToBasementId])

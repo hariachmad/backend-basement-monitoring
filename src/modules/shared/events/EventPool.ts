@@ -1,6 +1,8 @@
+import { Injectable } from "@nestjs/common";
 import { EventHandler } from "../types/EventHandler.js";
 import { EventMap } from "./EventMap.js";
 
+@Injectable()
 export class EventPool {
     private readonly handlers = new Map<keyof EventMap, Set<EventHandler<any>>>();
     private queue: Promise<void> = Promise.resolve();

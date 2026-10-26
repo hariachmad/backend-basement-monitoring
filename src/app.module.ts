@@ -6,11 +6,10 @@ import { LineModule } from './modules/line/line.module.js';
 import { LineInOutBasementModule } from './modules/line-in-out-basement/line-in-out-basement.module.js';
 import { BasementModule } from './modules/basement/basement.module.js';
 import { EventEmitterModule } from "@nestjs/event-emitter";
-import { OccupancyModule } from './modules/occupancy/occupancy.module.js';
 import { LineCrossingModule } from './modules/line-crossing/line-crossing.module.js';
 
 @Module({
-  imports: [EventEmitterModule.forRoot(),BasementModule, LineModule, LineInOutBasementModule, OccupancyModule, LineCrossingModule],
+  imports: [EventEmitterModule.forRoot(),BasementModule, LineModule, LineInOutBasementModule, LineCrossingModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -74,11 +74,13 @@ export class Basement {
 
         this.events.push({
             name: "basement.count-changed",
-            basementId: this.id,
-            previousCount,
-            currentCount: this.currentCount,
-            reason: "INITIAL",
-            occurredAt: this.updatedAt,
+            payload: {
+                basementId: this.id,
+                previousCount,
+                currentCount: this.currentCount,
+                reason: "INITIAL",
+                occurredAt: this.updatedAt,
+            }
         });
 
     }
@@ -90,11 +92,14 @@ export class Basement {
 
         this.events.push({
             name: "basement.count-changed",
-            basementId: this.id,
-            previousCount,
-            currentCount: this.currentCount,
-            reason: "IN",
-            occurredAt: this.updatedAt,
+            payload: {
+                basementId: this.id,
+                previousCount,
+                currentCount: this.currentCount,
+                reason: "IN",
+                occurredAt: this.updatedAt,
+            }
+
         });
     }
 
@@ -108,11 +113,13 @@ export class Basement {
 
         this.events.push({
             name: "basement.count-changed",
-            basementId: this.id,
-            previousCount,
-            currentCount: this.currentCount,
-            reason: "IN",
-            occurredAt: this.updatedAt,
+            payload: {
+                basementId: this.id,
+                previousCount,
+                currentCount: this.currentCount,
+                reason: "IN",
+                occurredAt: this.updatedAt,
+            }
         });
     }
 

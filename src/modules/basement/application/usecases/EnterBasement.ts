@@ -18,7 +18,7 @@ export class EnterBasement {
         await this.basementRepository.save(basement);
 
         for (const event of basement.pullEvents()) {
-            void this.eventPool.publish(event.name, );
+            void this.eventPool.publish(event.name,  event.payload );
         }
 
         return {

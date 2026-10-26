@@ -6,6 +6,8 @@ import { LineInOutBasementId } from "../../../../line-in-out-basement/domain/val
 
 export class LineInOutBasementMapper {
     static toDomain(row: LineInOutBasementRow): LineInOutBasement {
+        if (row.inToBasementId == null) throw new Error("row inToBasementId is null");
+        if (row.outToBasementId == null) throw new Error("row outToBasementId is null");
         return new LineInOutBasement(
             new LineInOutBasementId(row.id),
             new LineId(row.lineId),
@@ -18,8 +20,8 @@ export class LineInOutBasementMapper {
         return {
             id: lineInOutBasement.getId().getValue(),
             lineId: lineInOutBasement.getLineId().getValue(),
-            inToBasementId: lineInOutBasement.getInToBasement().getValue(),
-            outToBasementId: lineInOutBasement.getOutToBasement().getValue(),
+            inToBasementId: lineInOutBasement?.getInToBasement()?.getValue() ?? null,
+            outToBasementId: lineInOutBasement?.getOutToBasement()?.getValue() ?? null,
         };
     }
 }

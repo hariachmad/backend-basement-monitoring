@@ -9,6 +9,7 @@ import { DeleteBasement } from './application/usecases/DeleteBasement.js';
 import { BASEMENT_REPOSITORY } from './basement.tokens.js';
 import { EnterBasement } from './application/usecases/EnterBasement.js';
 import { LeaveBasement } from './application/usecases/LeaveBasement.js';
+import { EventPool } from '../shared/events/EventPool.js';
 
 @Injectable()
 export class BasementService {
@@ -22,14 +23,15 @@ export class BasementService {
 
     constructor(
         @Inject(BASEMENT_REPOSITORY) repository: IBasementRepository,
+        eventPool: EventPool, 
     ) {
         this.registerBasement = new RegisterBasement(repository);
         this.editBasement = new EditBasement(repository);
         this.findBasement = new FindBasement(repository);
         this.findAllBasements = new FindAllBasements(repository);
         this.deleteBasement = new DeleteBasement(repository);
-        this.enterBasement = new EnterBasement(repository);
-        this.leaveBasement = new LeaveBasement(repository);
+        this.enterBasement = new EnterBasement(repository, eventPool);
+        this.leaveBasement = new LeaveBasement(repository, eventPool);
     }
 
     register(input: Parameters<RegisterBasement['execute']>[0]) {
