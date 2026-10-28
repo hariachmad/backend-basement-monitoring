@@ -8,6 +8,7 @@ export class BasementMapper {
             new BasementId(row.id),
             row.name,
             row.capacity,
+            row.currentCount
         );
     }
 

@@ -8,6 +8,8 @@ import { IDeleteLineInOutBasementResponse } from './application/dto/response/IDe
 import { LineInOutBasementId } from './domain/value-object/LineInOutBasementId.js';
 import { LineId } from '../line/domain/value-object/LineId.js';
 import { LineInOutBasementService } from './line-in-out-basement.service.js';
+import { FindByLineIdLineInOutBasementRequestDto } from './dto/request/FindByLineIdLineInOutBasementRequestDto.js';
+import { FindLineInOutBasementRequestDto } from './dto/request/FindLineInOutBasementRequestDto.dto.js';
 
 @Controller('line-in-out-basement')
 export class LineInOutBasementController {
@@ -24,11 +26,17 @@ export class LineInOutBasementController {
         return this.lineInOutBasementService.findAll();
     }
 
+    @Get("lineid")
+    searchByLineId(@Query("lineId") query: FindByLineIdLineInOutBasementRequestDto) {
+        return this.lineInOutBasementService.findByLineId({
+            lineId: query.lineId,
+        });
+    }
+
     @Get("search")
-    search(@Query("id") id?: string, @Query("lineId") lineId?: string) {
+    search(@Query("id") query: FindLineInOutBasementRequestDto) {
         return this.lineInOutBasementService.find({
-            id: id ? LineInOutBasementId.of(id) : undefined,
-            lineId: lineId ? LineId.of(lineId) : undefined,
+            id: query.id,
         });
     }
 

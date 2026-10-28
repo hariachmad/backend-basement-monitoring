@@ -15,15 +15,14 @@ export class InferenceGateway {
 
     @SubscribeMessage("line:crossed")
     onLineCrossed(@MessageBody() data: any, @ConnectedSocket() client: Socket) {
-        const direction = String(data?.direction ?? "").toUpperCase();
-
-        if (!data?.eventId || !data?.lineId || !["IN", "OUT"].includes(direction)) {
+        const direction = String(data?.direction ?? "");
+        if (!data?.lineId || !["in", "out"].includes(direction)) {
             this.logger.warn(`payload not valid from ${client.id}`);
             return { ok: false, error: "invalid payload" };
         }
 
         void this.eventPool.publish("line.crossed", {
-            eventId: EventId.of(data.eventId),
+            eventId: EventId.of(EventId.generate().getValue()),
             lineId: LineId.of(data.lineId),
             direction: direction as Direction,
             occurredAt: new Date(data.occurredAt ?? Date.now()),

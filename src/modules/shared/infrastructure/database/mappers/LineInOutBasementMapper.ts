@@ -8,6 +8,7 @@ export class LineInOutBasementMapper {
     static toDomain(row: LineInOutBasementRow): LineInOutBasement {
         return new LineInOutBasement(
             new LineInOutBasementId(row.id),
+            row.name,
             new LineId(row.lineId),
             row.inToBasementId ? new BasementId(row.inToBasementId) : null,
             row.outToBasementId ? new BasementId(row.outToBasementId) : null,
@@ -17,6 +18,7 @@ export class LineInOutBasementMapper {
     static toPersistence(lineInOutBasement: LineInOutBasement): LineInOutBasementRow {
         return {
             id: lineInOutBasement.getId().getValue(),
+            name: lineInOutBasement.getName(),
             lineId: lineInOutBasement.getLineId().getValue(),
             inToBasementId: lineInOutBasement?.getInToBasement()?.getValue() ?? null,
             outToBasementId: lineInOutBasement?.getOutToBasement()?.getValue() ?? null,

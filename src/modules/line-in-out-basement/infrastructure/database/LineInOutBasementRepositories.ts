@@ -17,11 +17,12 @@ export class PrismaLineInOutBasementRepository implements ILineInOutBasementRepo
         return row ? LineInOutBasementMapper.toDomain(row) : null;
     }
 
-    async findByLineId(lineId: LineId): Promise<LineInOutBasement | null> {
-        const row = await this.prisma.lineInOutBasement.findUnique({
+    async findByLineId(lineId: LineId): Promise<LineInOutBasement[] | null> {
+        const rows = await this.prisma.lineInOutBasement.findMany({
             where: { lineId: lineId.getValue() },
         });
-        return row ? LineInOutBasementMapper.toDomain(row) : null;
+        const domainRows = rows?.map(LineInOutBasementMapper.toDomain);
+        return domainRows ?? null;
     }
 
     async findByBasementId(basementId: BasementId): Promise<LineInOutBasement[]> {

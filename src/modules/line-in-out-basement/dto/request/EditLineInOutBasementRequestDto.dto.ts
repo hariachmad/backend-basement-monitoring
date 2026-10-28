@@ -6,6 +6,10 @@ export class EditLineInOutBasementRequestDto implements IEditLineInOutBasementRe
     @IsNotEmpty()
     id: string;
 
+    @IsString()
+    @IsNotEmpty()
+    name: string;
+
     @IsUUID()
     @IsNotEmpty()
     lineId: string;

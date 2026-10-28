@@ -9,7 +9,7 @@ export class Basement {
     private updatedAt: Date;
     private events: BasementEvent[] = [];
 
-    constructor(id: BasementId, name: string, capacity: number) {
+    constructor(id: BasementId, name: string, capacity: number, currentCount: number) {
         if (capacity <= 0) {
             throw new Error("capacity must be greater than 0");
         }
@@ -17,7 +17,7 @@ export class Basement {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
-        this.currentCount = 0;
+        this.currentCount = currentCount;
         this.updatedAt = new Date();
     }
 
@@ -96,7 +96,7 @@ export class Basement {
                 basementId: this.id,
                 previousCount,
                 currentCount: this.currentCount,
-                reason: "IN",
+                reason: "in",
                 occurredAt: this.updatedAt,
             }
 
@@ -117,7 +117,7 @@ export class Basement {
                 basementId: this.id,
                 previousCount,
                 currentCount: this.currentCount,
-                reason: "IN",
+                reason: "in",
                 occurredAt: this.updatedAt,
             }
         });

@@ -12,7 +12,7 @@ import { Server, Socket } from "socket.io";
 import type { MessageBody as SocketMessageBody }  from "./dto/message-body.dto.js";
 
 @WebSocketGateway({
-  namespace: "dashboard",
+  namespace: "inference",
   cors: { origin: "*" }, 
 })
 export class SystemGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -29,7 +29,7 @@ export class SystemGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.logger.log(`Client disconnected: ${client.id}`);
   }
 
-  @SubscribeMessage("system:counter")
+  @SubscribeMessage("system:register")
   handleSubscribe(
     @MessageBody() messageBody: SocketMessageBody,
     @ConnectedSocket() client: Socket,

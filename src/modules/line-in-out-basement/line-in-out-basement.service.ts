@@ -10,6 +10,7 @@ import { DeleteLineInOutBasement } from './application/usecases/DeleteLineInOutB
 import { LINE_IN_OUT_BASEMENT_REPOSITORY } from './line-in-out-basement.tokens.js';
 import { LINE_REPOSITORY } from '../line/line.tokens.js';
 import { BASEMENT_REPOSITORY } from '../basement/basement.tokens.js';
+import { FindByLineIdLineInOutBasement } from './application/usecases/FindByLineIdLineInOutBasement.js';
 
 @Injectable()
 export class LineInOutBasementService {
@@ -17,6 +18,7 @@ export class LineInOutBasementService {
     private readonly editLineInOutBasement: EditLineInOutBasement;
     private readonly findLineInOutBasement: FindLineInOutBasement;
     private readonly findAllLineInOutBasements: FindAllLineInOutBasements;
+    private readonly findByLineIdLineInOutBasements: FindByLineIdLineInOutBasement;
     private readonly deleteLineInOutBasement: DeleteLineInOutBasement;
 
     constructor(
@@ -29,6 +31,7 @@ export class LineInOutBasementService {
         this.findLineInOutBasement = new FindLineInOutBasement(repository);
         this.findAllLineInOutBasements = new FindAllLineInOutBasements(repository);
         this.deleteLineInOutBasement = new DeleteLineInOutBasement(repository);
+        this.findByLineIdLineInOutBasements = new FindByLineIdLineInOutBasement(repository);
     }
 
     register(input: Parameters<RegisterLineInOutBasement['execute']>[0]) {
@@ -45,6 +48,10 @@ export class LineInOutBasementService {
 
     findAll(input?: Parameters<FindAllLineInOutBasements['execute']>[0]) {
         return this.findAllLineInOutBasements.execute(input);
+    }
+
+    findByLineId(input: Parameters<FindByLineIdLineInOutBasement['execute']>[0]) {
+        return this.findByLineIdLineInOutBasements.execute(input);
     }
 
     delete(input: Parameters<DeleteLineInOutBasement['execute']>[0]) {

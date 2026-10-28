@@ -19,6 +19,7 @@ export class EditLineInOutBasement {
             throw new Error("LineInOutBasement not found");
         }
 
+        const name = input.name;
         const lineId = LineId.of(input.lineId);
         const inToBasement = BasementId.of(input.inToBasementId);
         const outToBasement = BasementId.of(input.outToBasementId);
@@ -33,12 +34,7 @@ export class EditLineInOutBasement {
             throw new Error("outToBasement not found");
         }
 
-        const sameLine = await this.lineInOutBasementRepository.findByLineId(lineId);
-        if (sameLine && sameLine.getId().getValue() !== lineInOutBasement.getId().getValue()) {
-            throw new Error("line already mapped to basement");
-        }
-
-        lineInOutBasement.edit(lineId, inToBasement, outToBasement);
+        lineInOutBasement.edit(lineId,name, inToBasement, outToBasement);
         await this.lineInOutBasementRepository.save(lineInOutBasement);
     }
 }

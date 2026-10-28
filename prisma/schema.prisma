@@ -31,22 +31,47 @@ model Line {
   direction String
   isActive  Boolean @default(true) @map("is_active")
 
-  inOutBasement LineInOutBasement?
+  inOutBasements LineInOutBasement[]
 
   @@map("lines")
 }
 
 model LineInOutBasement {
-  id              String @id
-  lineId          String @unique @map("line_id")
+  id              String  @id
+  name            String  @unique
+  lineId          String  @map("line_id")
   inToBasementId  String? @map("in_to_basement_id")
   outToBasementId String? @map("out_to_basement_id")
 
-  line          Line     @relation(fields: [lineId], references: [id], onDelete: Cascade)
+  line          Line      @relation(fields: [lineId], references: [id], onDelete: Cascade)
   inToBasement  Basement? @relation("InToBasement", fields: [inToBasementId], references: [id], onDelete: Cascade)
   outToBasement Basement? @relation("OutToBasement", fields: [outToBasementId], references: [id], onDelete: Cascade)
 
+  incrRedLine IncrRedLine[]
+
+  @@index([lineId])
   @@index([inToBasementId])
   @@index([outToBasementId])
   @@map("line_in_out_basements")
+}
+
+model IncrRedLine {
+  id                  String @id
+  lineInOutBasementId String @map("line_in_out_basement_id")
+  context             LineContext
+  apply               LineApply
+
+  lineInOutBasement   LineInOutBasement   @relation(fields: [lineInOutBasementId], references: [id], onDelete: Cascade)
+
+  @@map("incr_red_lines")
+}
+
+enum LineContext {
+  IN
+  OUT
+}
+
+enum LineApply{
+  INCREMENT
+  REDUCE
 }

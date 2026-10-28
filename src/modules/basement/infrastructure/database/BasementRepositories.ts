@@ -5,7 +5,7 @@ import { IBasementRepository } from "../../domain/repositories/IBasementReposito
 import { BasementId } from "../../domain/value-object/BasementId.js";
 
 export class PrismaBasementRepository implements IBasementRepository {
-    constructor(private readonly prisma: PrismaClient) {}
+    constructor(private readonly prisma: PrismaClient) { }
 
     async findById(id: BasementId): Promise<Basement | null> {
         const row = await this.prisma.basement.findUnique({
@@ -38,6 +38,7 @@ export class PrismaBasementRepository implements IBasementRepository {
                 create: data,
                 update: fields,
             });
+            const row = await this.prisma.basement.findUnique({ where: { id } });
         } catch (e) {
             if (
                 e instanceof Prisma.PrismaClientKnownRequestError &&

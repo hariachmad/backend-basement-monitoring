@@ -17,6 +17,7 @@ export class RegisterLineInOutBasement {
 
     async execute(input: IRegisterLineInOutBasementRequest): Promise<IRegisterLineInOutBasementResponse> {
         const lineId = LineId.of(input.lineId);
+        const name = input.name;
         const inToBasement = input.inToBasementId != "" ? BasementId.of(input.inToBasementId) : null;
         const outToBasement = input.outToBasementId != "" ? BasementId.of(input.outToBasementId) :  null;
 
@@ -30,13 +31,9 @@ export class RegisterLineInOutBasement {
             throw new Error("outToBasement not found");
         }
 
-        const existing = await this.lineInOutBasementRepository.findByLineId(lineId);
-        if (existing) {
-            throw new Error("line already mapped to basement");
-        }
-
         const lineInOutBasement = new LineInOutBasement(
             LineInOutBasementId.generate(),
+            name,
             lineId,
             inToBasement,
             outToBasement,
@@ -46,6 +43,7 @@ export class RegisterLineInOutBasement {
 
         return {
             id: lineInOutBasement.getId(),
+            name: lineInOutBasement.getName(),
             lineId: lineInOutBasement.getLineId(),
             inToBasementId: lineInOutBasement.inToBasement,
             outToBasementId: lineInOutBasement.getOutToBasement(),

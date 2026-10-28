@@ -6,7 +6,7 @@ import { IEnterBasementResponse } from "../dto/response/IEnterBasementResponse.d
 
 export class EnterBasement {
     constructor(private readonly basementRepository: IBasementRepository
-        , private readonly eventPool : EventPool
+        , private readonly eventPool: EventPool
     ) { }
 
     async execute(input: IEnterBasementRequest): Promise<IEnterBasementResponse> {
@@ -18,7 +18,7 @@ export class EnterBasement {
         await this.basementRepository.save(basement);
 
         for (const event of basement.pullEvents()) {
-            void this.eventPool.publish(event.name,  event.payload );
+            void this.eventPool.publish(event.name, event.payload);
         }
 
         return {

@@ -4,6 +4,7 @@ import { LineInOutBasementId } from "../../../domain/value-object/LineInOutBasem
 
 export interface IFindLineInOutBasementResponse {
     id: LineInOutBasementId;
+    name: string;
     lineId: LineId;
     inToBasement: BasementId | null;
     outToBasement: BasementId | null;

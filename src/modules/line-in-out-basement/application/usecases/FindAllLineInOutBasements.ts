@@ -14,6 +14,7 @@ export class FindAllLineInOutBasements {
         const responses: IFindLineInOutBasementResponse[] =
             lineInOutBasements.map((item) => ({
                 id: item.getId(),
+                name: item.getName(),
                 lineId: item.getLineId(),
                 inToBasement: item.getInToBasement(),
                 outToBasement: item.getOutToBasement(),

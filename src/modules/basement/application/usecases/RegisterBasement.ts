@@ -17,6 +17,7 @@ export class RegisterBasement {
             BasementId.generate(),
             input.name,
             input.capacity,
+            0
         );
 
         await this.basementRepository.save(basement);

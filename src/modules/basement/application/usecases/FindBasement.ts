@@ -6,9 +6,9 @@ import { IFindBasementResponse } from "../dto/response/IFindBasementResponse.dto
 export class FindBasement {
     constructor(private readonly basementRepository: IBasementRepository) {}
 
-    async execute(input: IFindBasementRequest): Promise<IFindBasementResponse> {
+    async execute(input: IFindBasementRequest): Promise<IFindBasementResponse | null> {
         if (!input.id && !input.name) {
-            throw new Error("either id or name is required");
+            return null;
         }
         if (input.id && input.name) {
             throw new Error("provide only one of id or name");

@@ -8,6 +8,10 @@ export class RegisterLineInOutBasementRequestDto implements IRegisterLineInOutBa
 
     @IsUUID()
     @IsNotEmpty()
+    name: string;
+
+    @IsUUID()
+    @IsNotEmpty()
     inToBasementId: string;
 
     @IsUUID()

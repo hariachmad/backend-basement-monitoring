@@ -4,12 +4,14 @@ import { LineInOutBasementId } from "../value-object/LineInOutBasementId.js";
 
 export class LineInOutBasement {
     id: LineInOutBasementId;
+    name: string;
     lineId: LineId;
     inToBasement: BasementId | null;
     outToBasement: BasementId | null;
 
-    constructor(id: LineInOutBasementId, lineId: LineId, inToBasement: BasementId | null, outToBasement: BasementId | null) {
+    constructor(id: LineInOutBasementId, name: string, lineId: LineId, inToBasement: BasementId | null, outToBasement: BasementId | null) {
         this.id = id;
+        this.name = name;
         this.lineId = lineId;
         this.inToBasement = inToBasement;
         this.outToBasement = outToBasement;
@@ -17,6 +19,10 @@ export class LineInOutBasement {
 
     public getId(): LineInOutBasementId {
         return this.id;
+    }
+
+    public getName(): string {
+        return this.name;
     }
     
     public getLineId(): LineId {
@@ -31,8 +37,9 @@ export class LineInOutBasement {
         return this.outToBasement;
     }
 
-    public edit(lineId: LineId, inToBasement: BasementId, outToBasement: BasementId) {
+    public edit(lineId: LineId, name: string, inToBasement: BasementId, outToBasement: BasementId) {
         this.lineId = lineId;
+        this.name = name;
         this.inToBasement = inToBasement;
         this.outToBasement = outToBasement;
     }

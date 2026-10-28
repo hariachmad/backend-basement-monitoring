@@ -1,1 +1,1 @@
-export type LineState = "IN" | "OUT"
+export type LineState = "in" | "out"

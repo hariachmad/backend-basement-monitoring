@@ -7,7 +7,7 @@ import { LineInOutBasementId } from "../value-object/LineInOutBasementId.js";
 export interface ILineInOutBasementRepository {
     findById(id: LineInOutBasementId): Promise<LineInOutBasement | null>;
     findAll(filter? : IFindLineInOutBasementFilter): Promise<LineInOutBasement[]>;
-    findByLineId(lineId: LineId): Promise<LineInOutBasement | null>;
+    findByLineId(lineId: LineId): Promise<LineInOutBasement[] | null>;
     findByBasementId(basementId: BasementId): Promise<LineInOutBasement[]>;
     save(lineInOutBasement: LineInOutBasement): Promise<void>;
     delete(id: LineInOutBasementId): Promise<void>;

@@ -12,7 +12,7 @@ export class LeaveBasement {
         if (!basement) {
             throw new Error("Basement not found");
         }
-        basement.registerOut;
+        basement.registerOut();
         await this.basementRepository.save(basement);
 
         for (const event of basement.pullEvents()) {

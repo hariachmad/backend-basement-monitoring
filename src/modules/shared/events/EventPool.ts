@@ -7,10 +7,17 @@ export class EventPool {
     private readonly handlers = new Map<keyof EventMap, Set<EventHandler<any>>>();
     private queue: Promise<void> = Promise.resolve();
 
+    private readonly id = Math.random().toString(36).slice(2, 6);
+
+    constructor() {
+    console.log('[EventPool] created', this.id);
+}
+
     public subscribe<K extends keyof EventMap>(
         type: K,
         handler: EventHandler<EventMap[K]>,
     ): () => void {
+        console.log('[EventPool] subscribe', type, 'pool:', this.id);
         const set = this.handlers.get(type) ?? new Set();
         set.add(handler);
         this.handlers.set(type, set);
@@ -21,6 +28,7 @@ export class EventPool {
         type: K,
         payload: EventMap[K],
     ): Promise<void> {
+        console.log('[EventPool] publish', type, 'pool:', this.id, 'handlers:', this.handlers.get(type)?.size ?? 0);
         this.queue = this.queue.then(() => this.dispatch(type, payload));
         return this.queue;
     }
