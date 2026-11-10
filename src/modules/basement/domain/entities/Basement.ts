@@ -1,4 +1,4 @@
-import { BasementEvent } from "../../../shared/types/BasementEvent.js";
+import { IEvent } from "../../../shared/events/IEvent.js";
 import { BasementId } from "../value-object/BasementId.js";
 
 export class Basement {
@@ -7,7 +7,8 @@ export class Basement {
     private capacity: number;
     private currentCount: number;
     private updatedAt: Date;
-    private events: BasementEvent[] = [];
+    private events: IEvent<any, any>[] = [];
+
 
     constructor(id: BasementId, name: string, capacity: number, currentCount: number) {
         if (capacity <= 0) {
@@ -21,7 +22,7 @@ export class Basement {
         this.updatedAt = new Date();
     }
 
-    public pullEvents(): BasementEvent[] {
+    public pullEvents(): IEvent<any, any>[] {
         const pulled = this.events;
         this.events = [];
         return pulled;
@@ -99,8 +100,15 @@ export class Basement {
                 reason: "in",
                 occurredAt: this.updatedAt,
             }
-
         });
+
+        this.events.push({
+            name: "basement.entered",
+            payload: {
+                basementId: this.id,
+                timestamp: new Date(),
+            }
+        })
     }
 
     public registerOut() {
@@ -121,6 +129,14 @@ export class Basement {
                 occurredAt: this.updatedAt,
             }
         });
+
+        this.events.push({
+            name: "basement.leaved",
+            payload: {
+                basementId: this.id,
+                timestamp: new Date(),
+            }
+        })
     }
 
     get isFull(): boolean { return this.currentCount >= this.capacity; }
