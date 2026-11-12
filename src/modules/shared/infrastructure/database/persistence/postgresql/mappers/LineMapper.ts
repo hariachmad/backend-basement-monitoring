@@ -1,6 +1,6 @@
-import type { Line as LineRow } from "../../../../../generated/prisma/client.js";
-import { Line } from "../../../../line/domain/entities/Line.js";
-import { LineId } from "../../../../line/domain/value-object/LineId.js";
+import type { Line as LineRow } from "../../../../../../../generated/prisma/client.js";
+import { Line } from "../../../../../../line/domain/entities/Line.js";
+import { LineId } from "../../../../../../line/domain/value-object/LineId.js";
 
 export class LineMapper {
     static toDomain(row: LineRow): Line {

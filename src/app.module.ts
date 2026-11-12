@@ -10,9 +10,11 @@ import { InferenceGateway } from './modules/shared/infrastructure/external/webso
 import { SystemGateway } from './modules/shared/infrastructure/external/websocket/system.gateway.js';
 import { IncrRedLineModule } from './modules/incr-red-line/incr-red-line.module.js';
 import { EventModule } from './modules/event/event.module.js';
+import { MongooseModule } from '@nestjs/mongoose';
+import { EventStoreModule } from './modules/event-store/event-store.module.js';
 
 @Module({
-  imports: [EventEmitterModule.forRoot(),BasementModule, LineModule, LineInOutBasementModule, LineCrossingModule, IncrRedLineModule, EventModule],
+  imports: [MongooseModule.forRoot('mongodb://localhost/nest'),EventEmitterModule.forRoot(),BasementModule, LineModule, LineInOutBasementModule, LineCrossingModule, IncrRedLineModule, EventModule, EventStoreModule],
   controllers: [AppController],
   providers: [AppService, SystemGateway, InferenceGateway],
 })

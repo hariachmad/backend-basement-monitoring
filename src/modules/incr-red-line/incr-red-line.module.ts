@@ -5,7 +5,7 @@ import { INCR_RED_LINE_REPOSITORY } from './incr-red-line.tokens.js';
 import { PrismaIncrRedLineRepository } from './infrastructure/database/IncrRedLineRepositories.js';
 import { LINE_IN_OUT_BASEMENT_REPOSITORY } from '../line-in-out-basement/line-in-out-basement.tokens.js';
 import { PrismaLineInOutBasementRepository } from '../line-in-out-basement/infrastructure/database/LineInOutBasementRepositories.js';
-import { prisma } from '../shared/infrastructure/database/prisma.js';
+import { prisma } from '../shared/infrastructure/database/persistence/postgresql/prisma.js';
 
 @Module({
   controllers: [IncrRedLineController],

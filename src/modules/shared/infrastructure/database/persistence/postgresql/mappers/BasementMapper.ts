@@ -1,6 +1,6 @@
-import type { Basement as BasementRow } from "../../../../../generated/prisma/client.js";
-import { Basement } from "../../../../basement/domain/entities/Basement.js";
-import { BasementId } from "../../../../basement/domain/value-object/BasementId.js";
+import type { Basement as BasementRow } from "../../../../../../../generated/prisma/client.js";
+import { Basement } from "../../../../../../basement/domain/entities/Basement.js";
+import { BasementId } from "../../../../../../basement/domain/value-object/BasementId.js";
 
 export class BasementMapper {
     static toDomain(row: BasementRow): Basement {

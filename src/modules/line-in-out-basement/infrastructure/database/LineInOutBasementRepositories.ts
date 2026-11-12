@@ -1,5 +1,5 @@
 import { Prisma, PrismaClient } from "../../../../generated/prisma/client.js";
-import { LineInOutBasementMapper } from "../../../shared/infrastructure/database/mappers/LineInOutBasementMapper.js";
+import { LineInOutBasementMapper } from "../../../shared/infrastructure/database/persistence/postgresql/mappers/LineInOutBasementMapper.js";
 import { BasementId } from "../../../basement/domain/value-object/BasementId.js";
 import { LineId } from "../../../line/domain/value-object/LineId.js";
 import { LineInOutBasement } from "../../domain/entities/LineInOutBasement.js";

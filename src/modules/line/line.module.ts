@@ -3,7 +3,7 @@ import { LineController } from './line.controller.js';
 import { LineService } from './line.service.js';
 import { LINE_REPOSITORY } from './line.tokens.js';
 import { PrismaLineRepository } from './infrastructure/database/LineRepositories.js';
-import { prisma } from '../shared/infrastructure/database/prisma.js';
+import { prisma } from '../shared/infrastructure/database/persistence/postgresql/prisma.js';
 
 @Module({
   controllers: [LineController],

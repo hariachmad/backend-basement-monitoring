@@ -7,7 +7,7 @@ import { LINE_REPOSITORY } from '../line/line.tokens.js';
 import { PrismaLineRepository } from '../line/infrastructure/database/LineRepositories.js';
 import { BASEMENT_REPOSITORY } from '../basement/basement.tokens.js';
 import { PrismaBasementRepository } from '../basement/infrastructure/database/BasementRepositories.js';
-import { prisma } from '../shared/infrastructure/database/prisma.js';
+import { prisma } from '../shared/infrastructure/database/persistence/postgresql/prisma.js';
 
 @Module({
   controllers: [LineInOutBasementController],
