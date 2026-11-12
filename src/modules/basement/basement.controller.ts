@@ -56,6 +56,16 @@ export class BasementController {
         return this.basementService.find({ id: BasementId.of(id) });
     }
 
+    @Put("initial")
+    @HttpCode(HttpStatus.OK)
+    @ApiOperation({ summary: 'Initial Basement' })
+    @ApiResponse({ status: HttpStatus.OK, description: 'Basement updated successfully', type: InitialBasementResponseDto })
+    @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Basement not found' })
+    async initial(@Body() body: InitialBasementRequestDto) {
+        await this.basementService.initial({ ...body });
+        return this.basementService.find({ id: body.id });
+    }
+
     @Put(":id")
     @ApiOperation({ summary: 'Edit basement details' })
     @ApiParam({ name: 'id', type: String, description: 'Basement UUID' })
@@ -64,15 +74,5 @@ export class BasementController {
     async edit(@Param("id") id: string, @Body() body: EditBasementRequestDto) {
         await this.basementService.edit({ ...body });
         return this.basementService.find({ id: BasementId.of(body.id) });
-    }
-
-    @Put("initial")
-    @HttpCode(HttpStatus.ACCEPTED)
-    @ApiOperation({ summary: 'Initial Basement' })
-    @ApiResponse({ status: HttpStatus.OK, description: 'Basement updated successfully', type: InitialBasementResponseDto })
-    @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Basement not found' })
-    async initial(@Body() body: InitialBasementRequestDto) {
-        await this.basementService.initial({ ...body });
-        return this.basementService.find({ id: body.id });
     }
 }
