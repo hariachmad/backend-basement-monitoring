@@ -66,7 +66,7 @@ export class BasementController {
         return this.basementService.find({ id: BasementId.of(body.id) });
     }
 
-    @Put("/initial/:id")
+    @Put("initial/:id")
     @HttpCode(HttpStatus.ACCEPTED)
     @ApiOperation({ summary: 'Initial Basement' })
     @ApiParam({ name: 'id', type: String, description: 'Basement UUID' })
