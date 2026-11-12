@@ -149,5 +149,5 @@ export class Basement {
         return toDateKey(this.updatedAt) === toDateKey(new Date());
     }
 
-
+    
 }

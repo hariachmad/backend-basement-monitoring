@@ -10,6 +10,7 @@ import { BASEMENT_REPOSITORY } from './basement.tokens.js';
 import { EnterBasement } from './application/usecases/EnterBasement.js';
 import { LeaveBasement } from './application/usecases/LeaveBasement.js';
 import { EventPool } from '../shared/events/EventPool.js';
+import { InitialBasement } from './application/usecases/InitialBasement.js';
 
 @Injectable()
 export class BasementService {
@@ -20,6 +21,7 @@ export class BasementService {
     private readonly deleteBasement: DeleteBasement;
     private readonly enterBasement: EnterBasement;
     private readonly leaveBasement: LeaveBasement;
+    private readonly initialBasement: InitialBasement;
 
     constructor(
         @Inject(BASEMENT_REPOSITORY) repository: IBasementRepository,
@@ -32,10 +34,15 @@ export class BasementService {
         this.deleteBasement = new DeleteBasement(repository);
         this.enterBasement = new EnterBasement(repository, eventPool);
         this.leaveBasement = new LeaveBasement(repository, eventPool);
+        this.initialBasement = new InitialBasement(repository);
     }
 
     register(input: Parameters<RegisterBasement['execute']>[0]) {
         return this.registerBasement.execute(input);
+    }
+
+    initial(input: Parameters<InitialBasement['execute']>[0]) {
+        return this.initialBasement.execute(input);
     }
 
     edit(input: Parameters<EditBasement['execute']>[0]) {

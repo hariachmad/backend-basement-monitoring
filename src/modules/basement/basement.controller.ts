@@ -9,6 +9,8 @@ import { EditBasementRequestDto } from './dto/request/EditBasementRequestDto.dto
 import { BasementService } from './basement.service.js';
 import { RegisterBasementResponseDto } from './dto/response/RegisterBasementResponseDto.dto.js';
 import { FindBasementResponseDto } from './dto/response/FindBasementResponseDto.dto.js';
+import { InitialBasementRequestDto } from './dto/request/InitialBasementRequestDto.dto.js';
+import { InitialBasementResponseDto } from './dto/response/InitialBasementResponseDto.dto.js';
 
 @ApiTags('Basement')
 @Controller('basement')
@@ -62,5 +64,16 @@ export class BasementController {
     async edit(@Param("id") id: string, @Body() body: EditBasementRequestDto) {
         await this.basementService.edit({ ...body });
         return this.basementService.find({ id: BasementId.of(body.id) });
+    }
+
+    @Put("/initial/:id")
+    @HttpCode(HttpStatus.ACCEPTED)
+    @ApiOperation({ summary: 'Initial Basement' })
+    @ApiParam({ name: 'id', type: String, description: 'Basement UUID' })
+    @ApiResponse({ status: HttpStatus.OK, description: 'Basement updated successfully', type: InitialBasementResponseDto })
+    @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Basement not found' })
+    async initial(@Param("id") id: string, @Body() body: InitialBasementRequestDto) {
+        await this.basementService.initial({ ...body });
+        return this.basementService.find({ id: body.id });
     }
 }
