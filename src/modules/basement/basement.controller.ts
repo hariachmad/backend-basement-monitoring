@@ -66,13 +66,12 @@ export class BasementController {
         return this.basementService.find({ id: BasementId.of(body.id) });
     }
 
-    @Put("initial/:id")
+    @Put("initial")
     @HttpCode(HttpStatus.ACCEPTED)
     @ApiOperation({ summary: 'Initial Basement' })
-    @ApiParam({ name: 'id', type: String, description: 'Basement UUID' })
     @ApiResponse({ status: HttpStatus.OK, description: 'Basement updated successfully', type: InitialBasementResponseDto })
     @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Basement not found' })
-    async initial(@Param("id") id: string, @Body() body: InitialBasementRequestDto) {
+    async initial(@Body() body: InitialBasementRequestDto) {
         await this.basementService.initial({ ...body });
         return this.basementService.find({ id: body.id });
     }
