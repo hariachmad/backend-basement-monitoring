@@ -1,4 +1,6 @@
 import { Direction } from "../../../common/types/Direction.js";
+import { PayloadEnterBasementEvent } from "../../basement/domain/events/EnterBasementEvent.js";
+import { PayloadLeavedBasementEvent } from "../../basement/domain/events/LeaveBasementEvent.js";
 import { BasementId } from "../../basement/domain/value-object/BasementId.js";
 import { LineId } from "../../line/domain/value-object/LineId.js";
 import { EventId } from "../value-object/EventId.js";
@@ -27,4 +29,6 @@ export interface EventMap {
         capacity: number;
         occurredAt: Date;
     };
+    "basement.entered": PayloadEnterBasementEvent;
+    "basement.leaved": PayloadLeavedBasementEvent;
 }

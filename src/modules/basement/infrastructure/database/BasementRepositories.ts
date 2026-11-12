@@ -1,5 +1,5 @@
 import { Prisma, PrismaClient } from "../../../../generated/prisma/client.js";
-import { BasementMapper } from "../../../shared/infrastructure/database/mappers/BasementMapper.js";
+import { BasementMapper } from "../../../shared/infrastructure/database/persistence/postgresql/mappers/BasementMapper.js";
 import { Basement } from "../../domain/entities/Basement.js";
 import { IBasementRepository } from "../../domain/repositories/IBasementRepository.js";
 import { BasementId } from "../../domain/value-object/BasementId.js";

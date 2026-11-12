@@ -1,5 +1,5 @@
 import { Prisma, PrismaClient } from "../../../../generated/prisma/client.js";
-import { LineMapper } from "../../../shared/infrastructure/database/mappers/LineMapper.js";
+import { LineMapper } from "../../../shared/infrastructure/database/persistence/postgresql/mappers/LineMapper.js";
 import { Line } from "../../domain/entities/Line.js";
 import { ILineRepository } from "../../domain/repositories/ILineRepository.js";
 import { LineId } from "../../domain/value-object/LineId.js";

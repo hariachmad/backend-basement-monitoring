@@ -1,5 +1,5 @@
 import { Prisma, PrismaClient } from "../../../../generated/prisma/client.js";
-import { IncrRedLineMapper } from "../../../shared/infrastructure/database/mappers/IncrRedLineMapper.js";
+import { IncrRedLineMapper } from "../../../shared/infrastructure/database/persistence/postgresql/mappers/IncrRedLineMapper.js";
 import { LineInOutBasementId } from "../../../line-in-out-basement/domain/value-object/LineInOutBasementId.js";
 import { IncrRedLine } from "../../domain/entities/IncrRedLine.js";
 import { IIncrRedLineRepository } from "../../domain/repositories/IIncrRedLineRepository.js";
