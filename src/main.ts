@@ -5,6 +5,13 @@ import { AppModule } from './app.module.js';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: '*',
+    credentials: true,
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Basement Monitoring API')
     .setDescription('OpenAPI specification and Swagger documentation for the Basement Monitoring system')
