@@ -63,7 +63,7 @@ export class BasementController {
     @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Basement not found' })
     async initial(@Body() body: InitialBasementRequestDto) {
         await this.basementService.initial({ ...body });
-        return this.basementService.find({ id: body.id });
+        return this.basementService.find({ id: BasementId.of(body.id) });
     }
 
     @Put(":id")

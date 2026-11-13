@@ -13,5 +13,5 @@ export class InitialBasementRequestDto implements IInitialBasementRequest {
     @IsOptional()
     @IsString()
     @MinLength(1)
-    id: BasementId;
+    id: string;
 }
