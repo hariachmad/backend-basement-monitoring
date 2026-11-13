@@ -75,3 +75,22 @@ enum LineApply{
   INCREMENT
   REDUCE
 }
+
+enum TrafficEventType {
+  ENTERED
+  LEAVED
+}
+
+model TrafficEvent {
+  id           String           @id @default(cuid())
+  eventId      String           @unique          
+  type         TrafficEventType
+  basementId   String
+  occurredAt   DateTime                          
+  dateKey      String                            // "2026-11-12" (Asia/Jakarta)
+  gateId       String?
+  
+  createdAt    DateTime         @default(now())
+
+  @@index([basementId, dateKey, type])
+}

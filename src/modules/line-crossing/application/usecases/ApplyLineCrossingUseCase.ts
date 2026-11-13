@@ -20,6 +20,8 @@ export class ApplyLineCrossingUseCase {
             await this.lineInOutService.findByLineId({
                 lineId: input.lineId,
             });
+        
+        console.log(`[ApplyLineCrossing] lineInOutBasements: ${JSON.stringify(lineInOutBasements)}`);
 
         if (!lineInOutBasements || lineInOutBasements.length === 0) {
             console.warn(`[ApplyLineCrossing] line ${String(input.lineId.getValue())} not found`);
