@@ -7,7 +7,7 @@ export class InitialBasement {
 
     async execute(input: IInitialBasementRequest): Promise<void> {
         const basement = await this.basementRepository.findById(
-            input.id,
+            BasementId.of(input.id),
         );
         if (!basement) {
             throw new Error("Basement not found");

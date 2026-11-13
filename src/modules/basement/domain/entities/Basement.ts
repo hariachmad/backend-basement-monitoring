@@ -69,6 +69,9 @@ export class Basement {
     }
 
     public initial(currentCount: number) {
+        if (currentCount > this.capacity) {
+            throw new Error("currentCount must be less than capacity");
+        }
         const previousCount = this.currentCount;
         this.currentCount = currentCount;
         this.updatedAt = new Date();
